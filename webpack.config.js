@@ -36,7 +36,8 @@ function buildConfig({
             filename: `[name]${suffix}`,
             path: __dirname,
             library: {
-                type,
+                type : "var",
+                name : "Transformers"
             },
         },
         plugins: [
