@@ -55,7 +55,7 @@ export class Tensor {
      * @param {[DataType, DataArray, number[]]|[import('onnxruntime-common').Tensor]} args
      */
     constructor(...args) {
-        if (args[0] instanceof ONNXTensor) {
+        if (args[0] instanceof Object) {
             // Create shallow copy
             Object.assign(this, args[0]);
 
