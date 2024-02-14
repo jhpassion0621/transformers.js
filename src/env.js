@@ -88,7 +88,6 @@ export const env = {
     experimental: {
         // Whether to use the experimental WebGPU backend for ONNX.js.
         useWebGPU: false,
-        onlyWebGPU: false,
     },
 
     __dirname,
