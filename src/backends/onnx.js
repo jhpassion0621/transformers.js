@@ -26,6 +26,7 @@ import * as ONNX_WEB from 'onnxruntime-web';
 
 /** @type {import('onnxruntime-web')|import('onnxruntime-node')} The ONNX runtime module. */
 export let ONNX;
+let onlyWebGPU = env.experimental.onlyWebGPU;
 
 const WEBGPU_AVAILABLE = typeof navigator !== 'undefined' && 'gpu' in navigator;
 const USE_ONNXRUNTIME_NODE = typeof process !== 'undefined' && process?.release?.name === 'node'
@@ -75,8 +76,12 @@ export async function createInferenceSession(buffer) {
         InferenceSession = ONNX_WEBGPU.InferenceSession;
 
         // If WebGPU is available and the user enables the experimental flag, try to use the WebGPU execution provider.
-        executionProviders = ['webgpu', 'wasm'];
-
+        if(onlyWebGPU === true){
+            executionProviders = ['webgpu'];
+        }else{
+            executionProviders = ['webgpu', 'wasm'];
+        }
+        
         Object.assign(ONNX_WEBGPU.env, env.backends.onnx);
 
     } else {
