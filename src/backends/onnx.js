@@ -69,7 +69,7 @@ export async function createInferenceSession(buffer) {
         // Only import the WebGPU version if the user enables the experimental flag.
         let ONNX_WEBGPU = ONNX_MODULES.get('webgpu');
         if (ONNX_WEBGPU === undefined) {
-            ONNX_WEBGPU = await import('onnxruntime-web/webgpu');
+            ONNX_WEBGPU = (await import('onnxruntime-web/webgpu')).default;
             ONNX_MODULES.set('webgpu', ONNX_WEBGPU)
         }
 
